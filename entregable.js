@@ -1,5 +1,5 @@
 const fs = require("fs");
-const { title } = require("process");
+
 
 class ProductManager {
     #path=""
@@ -30,10 +30,11 @@ class ProductManager {
 
     async getProductbyId(id){
         const products = await this.getProducts()
-        if(products.find((prod) => prod.id == id)){
-            return console.table(products.find((prod)=> prod.id == id))
-        }else{
+        const productsFilter = products.find((prod) => prod.id == id)
+        if(!productsFilter){
             console.log ("Producto no encontrado")
+        }else{
+            return console.table(productsFilter)
         }
     }
 
